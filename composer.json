@@ -20,8 +20,7 @@
         "php": ">=7.4",
         "ext-openssl" : "*",
         "typo3/cms-core": "~9.5.0",
-		     "madj2k/t3-core-extended": "~9.5.4"
-	},
+	"madj2k/t3-core-extended": "~9.5.4"
     } ,	
     "autoload": {
         "psr-4": {
