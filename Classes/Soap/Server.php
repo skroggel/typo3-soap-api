@@ -78,7 +78,7 @@ class Server implements ServerInterface
     public function getVersion(): string
     {
         $settings = $this->getSettings();
-        $version = ExtensionManagementUtility::getExtensionVersion('rkw_soap');
+        $version = ExtensionManagementUtility::getExtensionVersion('soap_api');
 
         if ($settings['soapServer']['version']) {
             $version = $settings['soapServer']['version'];
