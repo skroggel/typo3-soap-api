@@ -1,9 +1,9 @@
 <?php
 ini_set('display_errors', 'On');
 
- $client = new \SoapClient("http://rkw-kompetenzzentrum.rkw.codes/index.php?type=1690546816&wsdl=1",
+// $client = new \SoapClient("http://rkw-kompetenzzentrum.rkw.codes/index.php?type=1690546816&wsdl=1",
 // $client = new \SoapClient("http://rkw-kompetenzzentrum.rkw.local/?type=1690546816&wsdl=1",
-// $client = new \SoapClient("https://soap.rkw-kompetenzzentrum.de/index.php?type=1690546816&wsdl=1&no_varnish=1",
+ $client = new \SoapClient("https://soap.rkw-kompetenzzentrum.de/index.php?type=1690546816&wsdl=1",
 
 array(
     'trace'      => 1,
@@ -22,7 +22,7 @@ array(
 # $client->setStoragePids('1');
 # $result = $client->getVersion();
 # ----- FeUsers -----
- $result = $client->findFeUsersByTimestamp(12);
+# $result = $client->findFeUsersByTimestamp(12);
 # ----- FeUserGroups ------
 # $result = $client->findFeUserGroupsByTimestamp(12, 0);
 # ------ Order ------
@@ -33,7 +33,7 @@ array(
 # $result = $client->rkwShopFindOrderItemsByOrder(1);
 # $result = $client->rkwShopSetStatusForOrderItem(1,200); // neues Feld: status
 # ----- Products -----
-# $result = $client->rkwShopFindAllProducts();
+$result = $client->rkwShopFindAllProducts();
 # $result = $client->rkwShopSetOrderedExternalForProduct(1,1000);
 # ----- Stocks -----
 # $result = $client->rkwShopFindStocksByProduct(1308);

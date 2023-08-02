@@ -18,6 +18,9 @@ plugin.tx_soapapi {
 
         soapServer {
 
+            # cat=plugin.tx_soapapi//a; type=string; label=List of storagePids for usage on database requests
+            storagePids =
+
             # cat=plugin.tx_soapapi//a; type=string; label=Username for SOAP Server Login
             username =
 
