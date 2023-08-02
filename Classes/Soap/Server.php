@@ -54,16 +54,30 @@ class Server implements ServerInterface
 
 
     /**
+     * @var array
+     */
+    protected array $settings = [];
+
+
+    /**
      * Constructor
+     * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      * @returns void
      */
     public function __construct()
     {
+        $this->settings = $this->getSettings();
+
         /** @var \TYPO3\CMS\Extbase\Object\ObjectManager $objectManager */
         $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
 
         /** @var \Madj2k\SoapApi\Data\DataHandler dataHandler */
         $this->dataHandler = $objectManager->get(DataHandler::class);
+
+        // set default storagePids
+        if ($this->settings['soapServer']['storagePids']) {
+            $this->dataHandler->setStoragePids(['soapServer']['storagePids']);
+        }
     }
 
 
@@ -73,15 +87,12 @@ class Server implements ServerInterface
      * @return string
      * @throws \InvalidArgumentException
      * @throws \TYPO3\CMS\Core\Package\Exception
-     * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
     public function getVersion(): string
     {
-        $settings = $this->getSettings();
         $version = ExtensionManagementUtility::getExtensionVersion('soap_api');
-
-        if ($settings['soapServer']['version']) {
-            $version = $settings['soapServer']['version'];
+        if ($this->settings['soapServer']['version']) {
+            $version = $this->settings['soapServer']['version'];
         }
 
         return $version;
@@ -311,7 +322,14 @@ class Server implements ServerInterface
     public function rkwShopFindAllProducts(): array
     {
         $this->dataHandler->setTableName('tx_rkwshop_domain_model_product');
-        return $this->dataHandler->findAll();
+        $products =  $this->dataHandler->findAll();
+
+        /** @todo deprecated, for backwards compatibility */
+        foreach ($products as &$product) {
+            $product['stock'] = 5000;
+        }
+
+        return $products;
     }
 
 
