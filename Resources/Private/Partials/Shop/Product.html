@@ -1,0 +1,92 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:soapApi="http://typo3.org/ns/Madj2k/SoapApi/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+    
+    <f:section name="Types">
+        <xsd:complexType name="rkwShopProductList">
+            <xsd:complexContent mixed="false">
+                <xsd:restriction base="soapenc:Array">
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="unbounded" minOccurs="0" name="item" type="rkwShopProduct" />
+                    </xsd:sequence>
+                    <xsd:attribute wsdl:arrayType="rkwShopProduct[]" ref="soapenc:arrayType" />
+                </xsd:restriction>
+            </xsd:complexContent>
+        </xsd:complexType>
+    
+        <xsd:complexType name="rkwShopProduct">
+            <xsd:all>
+                <f:for each="{soapApi:fieldMapping(table='tx_rkwshop_domain_model_product')}" as="mappingConfig">
+                    <xsd:element minOccurs="0" maxOccurs="1" name="{mappingConfig.key}" type="xsd:{mappingConfig.type}" />
+                </f:for>
+    
+                <f:comment><!-- special field --></f:comment>
+                <xsd:element minOccurs="0" maxOccurs="1" name="stock" type="xsd:int" />
+            </xsd:all>
+        </xsd:complexType>
+    </f:section>
+    
+    <!-- ========================================================================= -->
+    
+    <f:section name="Messages">
+    
+        <message name="rkwShopFindAllProductsRequest" />
+        <message name="rkwShopFindAllProductsResponse">
+            <part name="return" type="rkwShopProductList"/>
+        </message>
+        
+        <message name="rkwShopSetOrderedExternalForProductRequest">
+            <part name="productUid" type="xsd:int"/>
+            <part name="orderedExternal" type="xsd:int"/>
+        </message>
+        <message name="rkwShopSetOrderedExternalForProductResponse">
+            <part name="return" type="xsd:int"/>
+        </message>
+        
+    </f:section>
+    
+    <!-- ========================================================================= -->
+    
+    <f:section name="PortTypes">
+    
+        <operation name="rkwShopFindAllProducts">
+            <input message="tns:rkwShopFindAllProductsRequest"/>
+            <output message="tns:rkwShopFindAllProductsResponse"/>
+        </operation>
+    
+        <operation name="rkwShopSetOrderedExternalForProduct">
+            <input message="tns:rkwShopSetOrderedExternalForProductRequest"/>
+            <output message="tns:rkwShopSetOrderedExternalForProductResponse"/>
+        </operation>
+        
+    </f:section>
+    
+    <!-- ========================================================================= -->
+    
+    <f:section name="Bindings">
+    
+        <operation name="rkwShopFindAllProducts">
+            <soap:operation soapAction="{url}/rkw/rkwsoap/soap/server/#rkwShopFindAllProducts"/>
+            <input>
+                <soap:body use="literal" namespace="{url}/rkw/rkwsoap/soap/server"/>
+            </input>
+    
+            <output>
+                <soap:body use="literal" namespace="{url}/rkw/rkwsoap/soap/server"/>
+            </output>
+        </operation>
+    
+    
+        <operation name="rkwShopSetOrderedExternalForProduct">
+            <soap:operation soapAction="{url}/rkw/rkwsoap/soap/server/#rkwShopSetOrderedExternalForProduct"/>
+            <input>
+                <soap:body use="literal" namespace="{url}/rkw/rkwsoap/soap/server"/>
+            </input>
+    
+            <output>
+                <soap:body use="literal" namespace="{url}/rkw/rkwsoap/soap/server"/>
+            </output>
+        </operation>
+        
+    </f:section>
+</html>

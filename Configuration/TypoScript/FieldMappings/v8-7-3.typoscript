@@ -1,0 +1,40 @@
+// #########################################################
+// FieldMapping-Configuration
+// #########################################################
+plugin.tx_soapapi  {
+
+	settings {
+
+        # keys for field mapping using database table name
+        # Array key is the database fieldname. The array value is the return key
+        # Two options for field names: Default; extension specific and "legacy" for backward reasons
+        fieldMapping {
+            fe_users {
+
+                fe_register {
+                    tx_feregister_gender {
+                        key = tx_rkwregistration_gender
+                        type = int
+                    }
+                    tx_feregister_title {
+                        key = tx_rkwregistration_title
+                        type = string
+                    }
+                    tx_feregister_consent_marketing >
+                }
+            }
+
+            #========================================
+
+            fe_groups {
+
+                fe_register {
+                    tx_feregister_is_membership {
+                        key = is_service
+                        type = int
+                    }
+                }
+            }
+        }
+	}
+}

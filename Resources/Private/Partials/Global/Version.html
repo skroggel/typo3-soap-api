@@ -1,0 +1,48 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:soapApi="http://typo3.org/ns/Madj2k/SoapApi/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+    <f:section name="Types">
+    
+    </f:section>
+    
+    <!-- ========================================================================= -->
+    
+    <f:section name="Messages">
+    
+        <message name="getVersionRequest" />
+        <message name="getVersionResponse">
+            <part name="return" type="xsd:string"/>
+        </message>
+    
+    </f:section>
+    
+    
+    <!-- ========================================================================= -->
+    
+    <f:section name="PortTypes">
+    
+        <operation name="getVersion">
+            <input message="tns:getVersionRequest"/>
+            <output message="tns:getVersionResponse"/>
+        </operation>
+    
+    </f:section>
+    
+    <!-- ========================================================================= -->
+    
+    <f:section name="Bindings">
+    
+        <operation name="getVersion">
+            <soap:operation soapAction="{url}/rkw/rkwsoap/soap/server/#getVersion"/>
+            <input>
+                <soap:body use="literal" namespace="{url}/rkw/rkwsoap/soap/server"/>
+            </input>
+    
+            <output>
+                <soap:body use="literal" namespace="{url}/rkw/rkwsoap/soap/server"/>
+            </output>
+        </operation>
+    
+    </f:section>
+</html>

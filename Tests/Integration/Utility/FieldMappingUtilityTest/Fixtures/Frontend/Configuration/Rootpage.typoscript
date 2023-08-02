@@ -1,0 +1,115 @@
+module.tx_soapapi  {
+
+    settings {
+        fieldMapping {
+
+            //==================================================
+            fe_users {
+                core {
+                    uid  {
+                        key = uid
+                        type = int
+                    }
+                    crdate {
+                        key = crdate
+                        type = int
+                    }
+                    username {
+                        key = username
+                        type = string
+                    }
+                    first_name {
+                        key = first_name
+                        type = int
+                    }
+                    last_name {
+                        key = last_name
+                        type = string
+                    }
+                    email {
+                        key = email
+                        type = string
+                    }
+                }
+
+                non_existing_extension {
+                    test  {
+                        key = test
+                        type = int
+                    }
+                }
+            }
+
+            // ================================================
+            fe_groups {
+                core {
+                    uid  {
+                        key_missing = uid
+                        type = int
+                    }
+                }
+            }
+
+            //==================================================
+
+            sys_template {
+
+                only_uninstalled_extension {
+                    uid  {
+                        key = uid
+                        type = int
+                    }
+                    crdate {
+                        key = crdate
+                        type = int
+                    }
+                }
+            }
+
+            //==================================================
+            sys_category {
+                core {
+                    uid  {
+                        key = uid
+                        type_missing = int
+                    }
+                }
+            }
+
+            //==================================================
+            pages {
+
+                core {
+                    uid  {
+                        key = uid
+                        type = int
+                    }
+                    crdate {
+                        key = crdate
+                        type = int
+                    }
+                    title {
+                        key = title
+                        type = string
+                    }
+                }
+
+                core_extended {
+                    tx_coreextended_alternative_title  {
+                        key = tx_coreextended_alternative_title
+                        type = string
+                    }
+                }
+            }
+        }
+    }
+}
+
+plugin.tx_soapapi < module.tx_soapapi
+
+
+page = PAGE
+page {
+    10 = TEXT
+    10.value = Hallo Welt!
+}

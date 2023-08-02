@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataset>
+
+    <fe_users>
+        <uid>10</uid>
+        <pid>10</pid>
+        <crdate>10</crdate>
+        <tstamp>0</tstamp>
+        <disable>1</disable>
+        <deleted>0</deleted>
+        <username>merkel@cdu.de</username>
+        <password>test</password>
+        <email>merkel@cdu.de</email>
+        <first_name>Angela</first_name>
+        <last_name>Merkel</last_name>
+        <company>CDU</company>
+        <address>Straßenring 123</address>
+        <zip>10969</zip>
+        <city>Hamburg</city>
+        <telephone>069/1346</telephone>
+        <fax>069/123456789</fax>
+        <title>Dr. Prof.</title>
+        <www>https://www.spd.de</www>
+    </fe_users>
+
+    <fe_users>
+        <uid>11</uid>
+        <pid>11</pid>
+        <crdate>10</crdate>
+        <tstamp>20000</tstamp>
+        <disable>0</disable>
+        <deleted>0</deleted>
+        <username>lauterbach@spd.de</username>
+        <password>test</password>
+        <email>lauterbach@spd.de</email>
+        <first_name>1Karl</first_name>
+        <last_name>Lauterbach</last_name>
+        <company>SPD</company>
+        <address>Straßenring 123</address>
+        <zip>10969</zip>
+        <city>Hamburg</city>
+        <telephone>069/1346</telephone>
+        <fax>069/123456789</fax>
+        <title>Dr. Prof.</title>
+        <www>https://www.spd.de</www>
+    </fe_users>
+
+    <fe_users>
+        <uid>12</uid>
+        <pid>12</pid>
+        <crdate>10</crdate>
+        <tstamp>10000</tstamp>
+        <disable>0</disable>
+        <deleted>0</deleted>
+        <username>lauterbach@spd.de</username>
+        <password>test</password>
+        <email>lauterbach@spd.de</email>
+        <first_name>Karl</first_name>
+        <last_name>Lauterbach</last_name>
+        <company>SPD</company>
+        <address>Straßenring 123</address>
+        <zip>10969</zip>
+        <city>Hamburg</city>
+        <telephone>069/1346</telephone>
+        <fax>069/123456789</fax>
+        <title>Dr. Prof.</title>
+        <www>https://www.spd.de</www>
+    </fe_users>
+</dataset>
