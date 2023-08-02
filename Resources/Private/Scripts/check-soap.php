@@ -1,8 +1,8 @@
 <?php
 ini_set('display_errors', 'On');
 
-// $client = new \SoapClient("http://soap.rkw.codes/index.php?type=1690546816&wsdl=1&no_varnish=1",
-$client = new \SoapClient("http://rkw-kompetenzzentrum.rkw.local/?type=1690546816&wsdl=1",
+ $client = new \SoapClient("http://rkw-kompetenzzentrum.rkw.codes/index.php?type=1690546816&wsdl=1",
+// $client = new \SoapClient("http://rkw-kompetenzzentrum.rkw.local/?type=1690546816&wsdl=1",
 // $client = new \SoapClient("https://soap.rkw-kompetenzzentrum.de/index.php?type=1690546816&wsdl=1&no_varnish=1",
 
 array(
