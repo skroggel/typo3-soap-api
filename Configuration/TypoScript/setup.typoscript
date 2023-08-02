@@ -1,0 +1,98 @@
+// #########################################################
+// Plugin Configuration
+// #########################################################
+plugin.tx_soapapi  {
+    persistence {
+    	storagePid = {$plugin.tx_soapapi.persistence.storagePid}
+    }
+
+    view {
+        layoutRootPaths {
+            0 = {$plugin.tx_soapapi.view.layoutRootPath}
+        }
+        templateRootPaths {
+            0 = {$plugin.tx_soapapi.view.templateRootPath}
+        }
+        partialRootPaths {
+            0 = {$plugin.tx_soapapi.view.partialRootPath}
+        }
+    }
+
+	features {
+		# uncomment the following line to enable the new Property Mapper.
+		# rewrittenPropertyMapper = 1
+	}
+
+	settings {
+
+		soapServer {
+			username = {$plugin.tx_soapapi.settings.soapServer.username}
+			password = {$plugin.tx_soapapi.settings.soapServer.password}
+			url = {$plugin.tx_soapapi.settings.soapServer.url}
+            typeNum = {$plugin.tx_soapapi.settings.soapServer.typeNum}
+			allowedRemoteIpList = {$plugin.tx_soapapi.settings.soapServer.allowedRemoteIpList}
+            disableSecurityChecks  = {$plugin.tx_soapapi.settings.soapServer.disableSecurityChecks}
+            version = {$plugin.tx_soapapi.settings.soapServer.version}
+		}
+	}
+}
+
+// #########################################################
+// Include fieldMappings
+// #########################################################
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:soap_api/Configuration/TypoScript/FieldMappings/Default.typoscript">
+['{$plugin.tx_soapapi.settings.soapServer.version}' == '8.7.3']
+    <INCLUDE_TYPOSCRIPT: source="FILE:EXT:soap_api/Configuration/TypoScript/FieldMappings/v8-7-3.typoscript">
+[END]
+
+
+// #########################################################
+// AJAX Configuration
+// #########################################################
+txSoapApiPage = PAGE
+txSoapApiPage {
+
+	typeNum = {$plugin.tx_soapapi.settings.soapServer.typeNum}
+
+	config {
+
+    	disableAllHeaderCode = 1
+    	xhtml_cleaning = 0
+    	admPanel = 0
+    	no_cache = 0
+    	debug = 0
+
+    	additionalHeaders.10.header = Content-type:text/xml;charset=utf-8|Expires: 0|Cache-Control: no-cache, must-revalidate, max-age=0, post-check=0, pre-check=0, FALSE|Pragma: no-cache
+    	metaCharset = utf-8
+
+		index_enable = 0
+		index_metatags = 0
+		index_externals = 0
+  	}
+
+  	10 = USER_INT
+  	10 {
+		userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+		extensionName = SoapApi
+		pluginName = Api
+		vendorName = Madj2k
+		controller = Soap
+		switchableControllerActions {
+
+			# Again: Controller-Name and Action
+			Soap {
+				1 = soap
+				2 = wsdl
+			}
+		}
+
+		view =< plugin.tx_soapapi.view
+		persistence =< plugin.tx_soapapi.persistence
+		settings =< plugin.tx_soapapi.settings
+  	}
+}
+
+// #########################################################
+// Various
+// #########################################################
+module.tx_soapapi < plugin.tx_soapapi

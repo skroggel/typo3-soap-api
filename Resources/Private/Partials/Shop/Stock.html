@@ -1,0 +1,91 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:soapApi="http://typo3.org/ns/Madj2k/SoapApi/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+    
+    <f:section name="Types">
+        <xsd:complexType name="rkwShopStockList">
+            <xsd:complexContent mixed="false">
+                <xsd:restriction base="soapenc:Array">
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="unbounded" minOccurs="0" name="item" type="rkwShopStock" />
+                    </xsd:sequence>
+                    <xsd:attribute wsdl:arrayType="rkwShopStock[]" ref="soapenc:arrayType" />
+                </xsd:restriction>
+            </xsd:complexContent>
+        </xsd:complexType>
+    
+        <xsd:complexType name="rkwShopStock">
+            <xsd:all>
+                <f:for each="{soapApi:fieldMapping(table='tx_rkwshop_domain_model_stock')}" as="mappingConfig">
+                    <xsd:element minOccurs="0" maxOccurs="1" name="{mappingConfig.key}" type="xsd:{mappingConfig.type}" />
+                </f:for>
+            </xsd:all>
+        </xsd:complexType>
+    </f:section>
+    
+    <!-- ========================================================================= -->
+    
+    <f:section name="Messages">
+    
+        <message name="rkwShopFindStocksByProductRequest">
+            <part name="productUid" type="xsd:int"/>
+        </message>
+        <message name="rkwShopFindStocksByProductResponse">
+            <part name="return" type="rkwShopStockList"/>
+        </message>
+        
+        <message name="rkwShopAddStockForProductRequest">
+            <part name="productUid" type="xsd:int"/>
+            <part name="amount" type="xsd:int"/>
+            <part name="comment" type="xsd:string"/>
+            <part name="deliveryStart" type="xsd:int"/>
+        </message>
+        <message name="rkwShopAddStockForProductResponse">
+            <part name="return" type="xsd:int"/>
+        </message>
+    
+    </f:section>
+    
+    <!-- ========================================================================= -->
+    
+    <f:section name="PortTypes">
+    
+        <operation name="rkwShopFindStocksByProduct">
+            <input message="tns:rkwShopFindStocksByProductRequest"/>
+            <output message="tns:rkwShopFindStocksByProductResponse"/>
+        </operation>
+    
+        <operation name="rkwShopAddStockForProduct">
+            <input message="tns:rkwShopAddStockForProductRequest"/>
+            <output message="tns:rkwShopAddStockForProductResponse"/>
+        </operation>
+    </f:section>
+    
+    <!-- ========================================================================= -->
+    
+    <f:section name="Bindings">
+    
+        <operation name="rkwShopFindStocksByProduct">
+            <soap:operation soapAction="{url}/rkw/rkwsoap/soap/server/#rkwShopFindStocksByProduct"/>
+            <input>
+                <soap:body use="literal" namespace="{url}/rkw/rkwsoap/soap/server"/>
+            </input>
+    
+            <output>
+                <soap:body use="literal" namespace="{url}/rkw/rkwsoap/soap/server"/>
+            </output>
+        </operation>
+    
+    
+        <operation name="rkwShopAddStockForProduct">
+            <soap:operation soapAction="{url}/rkw/rkwsoap/soap/server/#rkwShopAddStockForProduct"/>
+            <input>
+                <soap:body use="literal" namespace="{url}/rkw/rkwsoap/soap/server"/>
+            </input>
+    
+            <output>
+                <soap:body use="literal" namespace="{url}/rkw/rkwsoap/soap/server"/>
+            </output>
+        </operation>
+    </f:section>
+</html>

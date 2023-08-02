@@ -1,0 +1,650 @@
+// #########################################################
+//  FieldMapping-Configuration
+// #########################################################
+plugin.tx_soapapi  {
+
+    settings {
+        # keys for field mapping using database table name
+        # Array key is the database fieldname. The array value is the return key
+        # Two options for field names: Default; extension specific and "legacy" for backward reasons
+        fieldMapping {
+            fe_users {
+                core {
+
+                    uid  {
+                        key = uid
+                        type = int
+                    }
+                    crdate {
+                        key = crdate
+                        type = int
+                    }
+                    tstamp {
+                        key = tstamp
+                        type = int
+                    }
+                    disable {
+                        key = disable
+                        type = int
+                    }
+                    deleted {
+                        key = deleted
+                        type = int
+                    }
+                    username {
+                        key = username
+                        type = string
+                    }
+                    usergroup {
+                        key = usergroup
+                        type = string
+                    }
+                    company {
+                        key = company
+                        type = string
+                    }
+                    first_name {
+                        key = first_name
+                        type = string
+                    }
+                    middle_name {
+                        key = middle_name
+                        type = string
+                    }
+                    last_name {
+                        key = last_name
+                        type = string
+                    }
+                    address {
+                        key = address
+                        type = string
+                    }
+                    zip {
+                        key = zip
+                        type = string
+                    }
+                    city {
+                        key = city
+                        type = string
+                    }
+                    telephone {
+                        key = telephone
+                        type = string
+                    }
+                    fax {
+                        key = fax
+                        type = string
+                    }
+                    email {
+                        key = email
+                        type = string
+                    }
+                    www {
+                        key = www
+                        type = string
+                    }
+                }
+
+                fe_register {
+                    tx_feregister_gender {
+                        key = gender
+                        type = int
+                    }
+                    tx_feregister_title {
+                        key = title
+                        type = string
+                    }
+                    tx_feregister_facebook_url {
+                        key = facebook_url
+                        type = string
+                    }
+                    tx_feregister_twitter_url {
+                        key = twitter_url
+                        type = string
+                    }
+                    tx_feregister_xing_url {
+                        key = xing_url
+                        type = string
+                    }
+                    tx_feregister_consent_marketing {
+                        key = consent_marketing
+                        type = string
+                    }
+                }
+            }
+
+            #========================================
+
+            fe_groups {
+
+                core {
+                    uid  {
+                        key = uid
+                        type = int
+                    }
+                    crdate {
+                        key = crdate
+                        type = int
+                    }
+                    tstamp {
+                        key = tstamp
+                        type = int
+                    }
+                    hidden {
+                        key = hidden
+                        type = int
+                    }
+                    deleted {
+                        key = deleted
+                        type = int
+                    }
+                    title {
+                        key = title
+                        type = string
+                    }
+                    description {
+                        key = description
+                        type = string
+                    }
+                }
+
+                fe_register {
+                    tx_feregister_is_membership {
+                        key = is_membership
+                        type = int
+                    }
+                }
+            }
+
+            #========================================
+
+            tx_rkwshop_domain_model_order {
+
+                rkw_shop {
+                    uid {
+                        key = uid
+                        type = int
+                    }
+                    pid {
+                        key = pid
+                        type = int
+                    }
+                    crdate {
+                        key = crdate
+                        type = int
+                    }
+                    tstamp {
+                        key = tstamp
+                        type = int
+                    }
+                    hidden {
+                        key = hidden
+                        type = int
+                    }
+                    deleted {
+                        key = deleted
+                        type = int
+                    }
+                    shipping_address {
+                        key = shipping_address
+                        type = int
+                    }
+                    status {
+                        key = status
+                        type = int
+                    }
+                    email {
+                        key = email
+                        type = string
+                    }
+                    frontend_user  {
+                        key = frontend_user
+                        type = int
+                    }
+                    remark {
+                        key = remark
+                        type = string
+                    }
+                }
+            }
+
+            #========================================
+
+            tx_rkwshop_domain_model_orderitem {
+                rkw_shop {
+                    uid {
+                        key = uid
+                        type = int
+                    }
+                    pid {
+                        key = pid
+                        type = int
+                    }
+                    crdate {
+                        key = crdate
+                        type = int
+                    }
+                    tstamp {
+                        key = tstamp
+                        type = int
+                    }
+                    deleted {
+                        key = deleted
+                        type = int
+                    }
+                    status {
+                        key = status
+                        type = int
+                    }
+                    amount {
+                        key = amount
+                        type = int
+                    }
+                    ext_order {
+                        key = ext_order
+                        type = int
+                    }
+                    is_pre_order {
+                        key = is_pre_order
+                        type = int
+                    }
+                    product {
+                        key = product
+                        type = int
+                    }
+                }
+            }
+
+            #========================================
+
+            tx_rkwshop_domain_model_product {
+                rkw_shop {
+                    uid {
+                        key = uid
+                        type = int
+                    }
+                    pid {
+                        key = pid
+                        type = int
+                    }
+                    crdate {
+                        key = crdate
+                        type = int
+                    }
+                    tstamp {
+                        key = tstamp
+                        type = int
+                    }
+                    hidden {
+                        key = hidden
+                        type = int
+                    }
+                    deleted {
+                        key = deleted
+                        type = int
+                    }
+                    title {
+                        key = title
+                        type = string
+                    }
+                    subtitle {
+                        key = subtitle
+                        type = string
+                    }
+                    record_type {
+                        key = record_type
+                        type = string
+                    }
+                    allow_single_order {
+                        key = allow_single_order
+                        type = int
+                    }
+                    product_bundle  {
+                        key = product_bundle
+                        type = int
+                    }
+                    page {
+                        key = page
+                        type = string
+                    }
+                    backend_user  {
+                        key = backend_user
+                        type = int
+                    }
+                    ordered_external {
+                        key = ordered_external
+                        type = int
+                    }
+                }
+            }
+
+            #========================================
+
+            tx_feregister_domain_model_shippingaddress {
+
+                fe_register {
+                    gender {
+                        key = gender
+                        type = int
+                    }
+                    title {
+                        key = title
+                        type = int
+                    }
+                    first_name {
+                        key = first_name
+                        type = string
+                    }
+                    last_name {
+                        key = last_name
+                        type = string
+                    }
+                    company {
+                        key = company
+                        type = string
+                    }
+                    address {
+                        key = address
+                        type = string
+                    }
+                    zip {
+                        key = zip
+                        type = string
+                    }
+                    city {
+                        key = city
+                        type = string
+                    }
+                }
+            }
+
+            #========================================
+
+            tx_rkwshop_domain_model_stock {
+
+                rkw_shop {
+                    uid {
+                        key = uid
+                        type = int
+                    }
+                    pid {
+                        key = pid
+                        type = int
+                    }
+                    crdate {
+                        key = crdate
+                        type = int
+                    }
+                    tstamp {
+                        key = tstamp
+                        type = int
+                    }
+                    hidden {
+                        key = hidden
+                        type = int
+                    }
+                    deleted {
+                        key = deleted
+                        type = int
+                    }
+                    product {
+                        key = product
+                        type = int
+                    }
+                    is_external {
+                        key = is_external
+                        type = int
+                    }
+                    amount {
+                        key = amount
+                        type = int
+                    }
+                    comment {
+                        key = comment
+                        type = string
+                    }
+                    delivery_start {
+                        key = delivery_start
+                        type = int
+                    }
+                }
+            }
+
+            #========================================
+
+            tx_rkwevents_domain_model_event {
+
+                rkw_events {
+                    uid {
+                        key = uid
+                        type = int
+                    }
+                    pid {
+                        key = pid
+                        type = int
+                    }
+                    crdate {
+                        key = crdate
+                        type = int
+                    }
+                    tstamp {
+                        key = tstamp
+                        type = int
+                    }
+                    hidden {
+                        key = hidden
+                        type = int
+                    }
+                    deleted {
+                        key = deleted
+                        type = int
+                    }
+                    title {
+                        key = title
+                        type = string
+                    }
+                    subtitle {
+                        key = subtitle
+                        type = string
+                    }
+                    start {
+                        key = start
+                        type = int
+                    }
+                    end {
+                        key = end
+                        type = int
+                    }
+                    seats {
+                        key = seats
+                        type = int
+                    }
+                    place {
+                        key = place
+                        type = int
+                    }
+                }
+            }
+
+            #========================================
+
+            tx_rkwevents_domain_model_eventplace {
+
+                rkw_events {
+                    uid {
+                        key = uid
+                        type = int
+                    }
+                    pid {
+                        key = pid
+                        type = int
+                    }
+                    crdate {
+                        key = crdate
+                        type = int
+                    }
+                    tstamp {
+                        key = tstamp
+                        type = int
+                    }
+                    hidden {
+                        key = hidden
+                        type = int
+                    }
+                    deleted {
+                        key = deleted
+                        type = int
+                    }
+                    name {
+                        key = name
+                        type = string
+                    }
+                    short {
+                        key = short
+                        type = string
+                    }
+                    address {
+                        key = address
+                        type = string
+                    }
+                    zip {
+                        key = zip
+                        type = string
+                    }
+                    city {
+                        key = city
+                        type = string
+                    }
+                    country {
+                        key = country
+                        type = int
+                    }
+                }
+            }
+
+            #========================================
+
+            tx_rkwevents_domain_model_eventreservation {
+
+                rkw_events {
+                    uid {
+                        key = uid
+                        type = int
+                    }
+                    pid {
+                        key = pid
+                        type = int
+                    }
+                    crdate {
+                        key = crdate
+                        type = int
+                    }
+                    tstamp {
+                        key = tstamp
+                        type = int
+                    }
+                    deleted {
+                        key = deleted
+                        type = int
+                    }
+                    fe_user {
+                        key = fe_user
+                        type = int
+                    }
+                    salutation {
+                        key = salutation
+                        type = int
+                    }
+                    first_name {
+                        key = first_name
+                        type = string
+                    }
+                    last_name {
+                        key = last_name
+                        type = string
+                    }
+                    company {
+                        key = company
+                        type = string
+                    }
+                    address {
+                        key = address
+                        type = string
+                    }
+                    zip {
+                        key = zip
+                        type = string
+                    }
+                    city {
+                        key = city
+                        type = string
+                    }
+                    phone {
+                        key = phone
+                        type = string
+                    }
+                    fax {
+                        key = fax
+                        type = string
+                    }
+                    email {
+                        key = email
+                        type = string
+                    }
+                    remark {
+                        key = remark
+                        type = string
+                    }
+                    event {
+                        key = event
+                        type = int
+                    }
+                }
+            }
+
+            #========================================
+
+            tx_rkwevents_domain_model_eventreservationaddperson {
+
+                rkw_events {
+                    uid {
+                        key = uid
+                        type = int
+                    }
+                    pid {
+                        key = pid
+                        type = int
+                    }
+                    crdate {
+                        key = crdate
+                        type = int
+                    }
+                    tstamp {
+                        key = tstamp
+                        type = int
+                    }
+                    deleted {
+                        key = deleted
+                        type = int
+                    }
+                    salutation {
+                        key = salutation
+                        type = int
+                    }
+                    first_name {
+                        key = first_name
+                        type = string
+                    }
+                    last_name {
+                        key = last_name
+                        type = string
+                    }
+                    event_reservation {
+                        key = event_reservation
+                        type = int
+                    }
+                }
+            }
+        }
+	}
+}

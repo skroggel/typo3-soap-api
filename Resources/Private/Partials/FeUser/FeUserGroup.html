@@ -1,0 +1,94 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:soapApi="http://typo3.org/ns/Madj2k/SoapApi/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+    
+    <f:section name="Types">
+        <xsd:complexType name="FeUserGroupList">
+            <xsd:complexContent mixed="false">
+                <xsd:restriction base="soapenc:Array">
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="unbounded" minOccurs="0" name="item" type="FeUserGroup" />
+                    </xsd:sequence>
+                    <xsd:attribute wsdl:arrayType="FeUserGroup[]" ref="soapenc:arrayType" />
+                </xsd:restriction>
+            </xsd:complexContent>
+        </xsd:complexType>
+    
+        <xsd:complexType name="FeUserGroup">
+            <xsd:all>
+                <f:for each="{soapApi:fieldMapping(table='fe_groups')}" as="mappingConfig">
+                    <xsd:element minOccurs="0" maxOccurs="1" name="{mappingConfig.key}" type="xsd:{mappingConfig.type}" />
+                </f:for>
+            </xsd:all>
+        </xsd:complexType>
+    </f:section>
+    
+    <!-- ========================================================================= -->
+    
+    <f:section name="Messages">
+    
+        <!-- DEPRECATED -->
+        <message name="findFeUserGroupByTimestampRequest">
+            <part name="timestamp" type="xsd:int"/>
+            <part name="serviceOnly" type="xsd:int"/>
+        </message>
+        <message name="findFeUserGroupByTimestampResponse">
+            <part name="return" type="FeUserGroupList"/>
+        </message>
+    
+        <message name="findFeUserGroupsByTimestampRequest">
+            <part name="timestamp" type="xsd:int"/>
+            <part name="serviceOnly" type="xsd:int"/>
+        </message>
+        <message name="findFeUserGroupsByTimestampResponse">
+            <part name="return" type="FeUserGroupList"/>
+        </message>
+    
+    </f:section>
+    
+    <!-- ========================================================================= -->
+    
+    <f:section name="PortTypes">
+    
+        <!-- DEPRECATED -->
+        <operation name="findFeUserGroupByTimestamp">
+            <input message="tns:findFeUserGroupByTimestampRequest"/>
+            <output message="tns:findFeUserGroupByTimestampResponse"/>
+        </operation>
+    
+    
+        <operation name="findFeUserGroupsByTimestamp">
+            <input message="tns:findFeUserGroupsByTimestampRequest"/>
+            <output message="tns:findFeUserGroupsByTimestampResponse"/>
+        </operation>
+    </f:section>
+    
+    <!-- ========================================================================= -->
+    
+    <f:section name="Bindings">
+    
+        <!-- DEPRECATED -->
+        <operation name="findFeUserGroupByTimestamp">
+            <soap:operation soapAction="{url}/rkw/rkwsoap/soap/server/#findFeUserGroupByTimestamp"/>
+            <input>
+                <soap:body use="literal" namespace="{url}/rkw/rkwsoap/soap/server"/>
+            </input>
+    
+            <output>
+                <soap:body use="literal" namespace="{url}/rkw/rkwsoap/soap/server"/>
+            </output>
+        </operation>
+    
+    
+        <operation name="findFeUserGroupsByTimestamp">
+            <soap:operation soapAction="{url}/rkw/rkwsoap/soap/server/#findFeUserGroupsByTimestamp"/>
+            <input>
+            <soap:body use="literal" namespace="{url}/rkw/rkwsoap/soap/server"/>
+            </input>
+    
+            <output>
+                <soap:body use="literal" namespace="{url}/rkw/rkwsoap/soap/server"/>
+            </output>
+        </operation>
+    </f:section>
+</html>

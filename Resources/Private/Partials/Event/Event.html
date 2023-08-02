@@ -1,0 +1,66 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:soapApi="http://typo3.org/ns/Madj2k/SoapApi/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+    <f:section name="Types">
+        <xsd:complexType name="rkwEventsEventList">
+            <xsd:complexContent mixed="false">
+                <xsd:restriction base="soapenc:Array">
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="unbounded" minOccurs="0" name="item" type="rkwEventsEvent" />
+                    </xsd:sequence>
+                    <xsd:attribute wsdl:arrayType="rkwEventsEvent[]" ref="soapenc:arrayType" />
+                </xsd:restriction>
+            </xsd:complexContent>
+        </xsd:complexType>
+    
+        <xsd:complexType name="rkwEventsEvent">
+            <xsd:all>
+                <f:for each="{soapApi:fieldMapping(table='tx_rkwevents_domain_model_event')}" as="mappingConfig">
+                    <xsd:element minOccurs="0" maxOccurs="1" name="{mappingConfig.key}" type="xsd:{mappingConfig.type}" />
+                </f:for>
+            </xsd:all>
+        </xsd:complexType>
+    </f:section>
+    
+    <!-- ========================================================================= -->
+    
+    <f:section name="Messages">
+    
+        <message name="rkwEventsFindEventsByTimestampRequest">
+            <part name="timestamp" type="xsd:int"/>
+        </message>
+        <message name="rkwEventsFindEventsByTimestampResponse">
+            <part name="return" type="rkwEventsEventList"/>
+        </message>
+    
+    </f:section>
+    
+    
+    <!-- ========================================================================= -->
+    
+    <f:section name="PortTypes">
+    
+        <operation name="rkwEventsFindEventsByTimestamp">
+            <input message="tns:rkwEventsFindEventsByTimestampRequest"/>
+            <output message="tns:rkwEventsFindEventsByTimestampResponse"/>
+        </operation>
+    
+    </f:section>
+    
+    <!-- ========================================================================= -->
+    
+    <f:section name="Bindings">
+    
+        <operation name="rkwEventsFindEventsByTimestamp">
+            <soap:operation soapAction="{url}/rkw/rkwsoap/soap/server/#rkwEventsFindEventsByTimestamp"/>
+            <input>
+            <soap:body use="literal" namespace="{url}/rkw/rkwsoap/soap/server"/>
+            </input>
+    
+            <output>
+                <soap:body use="literal" namespace="{url}/rkw/rkwsoap/soap/server"/>
+            </output>
+        </operation>
+    
+    </f:section>

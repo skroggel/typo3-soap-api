@@ -1,0 +1,50 @@
+module.tx_soapapi  {
+
+    settings {
+        fieldMapping {
+
+            //==================================================
+            fe_users {
+                core {
+                    uid  {
+                        key = uid
+                        type = int
+                    }
+                    crdate {
+                        key = crdate
+                        type = int
+                    }
+                    username {
+                        key = username_as_key
+                        type = string
+                    }
+                    first_name {
+                        key = first_name
+                        type = int
+                    }
+                    last_name {
+                        key = last_name
+                        type = string
+                    }
+                    email {
+                        key = email
+                        type = string
+                    }
+                    zip {
+                        key = zip
+                        type = string
+                    }
+                }
+            }
+        }
+    }
+}
+
+plugin.tx_soapapi < module.tx_soapapi
+
+
+page = PAGE
+page {
+    10 = TEXT
+    10.value = Hallo Welt!
+}

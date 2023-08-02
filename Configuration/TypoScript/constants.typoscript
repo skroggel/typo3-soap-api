@@ -1,0 +1,43 @@
+plugin.tx_soapapi {
+	view {
+		# cat=plugin.tx_soapapi/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:soap_api/Resources/Private/Templates/
+
+		# cat=plugin.tx_soapapi/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:soap_api/Resources/Private/Partials/
+
+		# cat=plugin.tx_soapapi/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:soap_api/Resources/Private/Layouts/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_soapapi//a; type=string; label=Default storage PID
+		storagePid =
+	}
+
+	settings {
+
+        soapServer {
+
+            # cat=plugin.tx_soapapi//a; type=string; label=Username for SOAP Server Login
+            username =
+
+            # cat=plugin.tx_soapapi//a; type=string; label=Password for SOAP Server Login
+            password =
+
+            # cat=plugin.tx_soapapi//a; type=string; label=URL for SOAP Server
+            url =
+
+            # cat=plugin.tx_soapapi//a; type=int; label=TypeNum for SOAP-page
+            typeNum = 1690546816
+
+            # cat=plugin.tx_soapapi//a; type=string; label=List of allowed IPs for SOAP Server (comma-separated)
+            allowedRemoteIpList =
+
+            # cat=plugin.tx_soapapi//a; type=boolean; label=Disables client authentication
+            disableSecurityChecks = 0
+
+            # cat=plugin.tx_soapapi//a; type=string; label=Version number that is returned via getVersion()
+            version = 8.7.3
+        }
+	}
+}

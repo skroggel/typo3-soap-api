@@ -1,0 +1,69 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:soapApi="http://typo3.org/ns/Madj2k/SoapApi/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+    <f:section name="Types">
+    
+    </f:section>
+    
+    <!-- ========================================================================= -->
+    
+    <f:section name="Messages">
+    
+        <message name="getStoragePidsRequest" />
+        <message name="getStoragePidsResponse">
+            <part name="return" type="xsd:string"/>
+        </message>
+    
+        <message name="setStoragePidsRequest" />
+        <message name="setStoragePidsResponse">
+            <part name="return" type="xsd:void"/>
+        </message>
+    
+    </f:section>
+    
+    
+    <!-- ========================================================================= -->
+    
+    <f:section name="PortTypes">
+    
+        <operation name="getStoragePids">
+            <input message="tns:getStoragePidsRequest"/>
+            <output message="tns:getStoragePidsResponse"/>
+        </operation>
+    
+        <operation name="setStoragePids">
+            <input message="tns:setStoragePidsRequest"/>
+            <output message="tns:setStoragePidsResponse"/>
+        </operation>
+    
+    </f:section>
+    
+    <!-- ========================================================================= -->
+    
+    <f:section name="Bindings">
+    
+        <operation name="getStoragePids">
+            <soap:operation soapAction="{url}/rkw/rkwsoap/soap/server/#getStoragePids"/>
+            <input>
+                <soap:body use="literal" namespace="{url}/rkw/rkwsoap/soap/server"/>
+            </input>
+    
+            <output>
+                <soap:body use="literal" namespace="{url}/rkw/rkwsoap/soap/server"/>
+            </output>
+        </operation>
+    
+        <operation name="setStoragePids">
+            <soap:operation soapAction="{url}/rkw/rkwsoap/soap/server/#setStoragePids"/>
+            <input>
+            <soap:body use="literal" namespace="{url}/rkw/rkwsoap/soap/server"/>
+            </input>
+    
+            <output>
+                <soap:body use="literal" namespace="{url}/rkw/rkwsoap/soap/server"/>
+            </output>
+        </operation>
+    
+    </f:section>
+</html>
