@@ -437,7 +437,7 @@ class Server implements ServerInterface
      * @return array
      * @throws \Madj2k\SoapApi\Exception
      */
-    public function findEventReservationAddPersonsByTimestamp(int $timestamp): array
+    public function rkwEventsFindEventReservationAddPersonsByTimestamp(int $timestamp): array
     {
         $this->dataHandler->setTableName('tx_rkwevents_domain_model_eventreservationaddperson');
         return $this->dataHandler->findByTstamp($timestamp);

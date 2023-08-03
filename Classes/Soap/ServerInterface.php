@@ -53,19 +53,7 @@ interface ServerInterface
     public function setStoragePids(string $storagePids): void;
 
 
-    /**
-     * Returns all FE-users that have been updated since $timestamp
-     * Alias of $this->findFeUsersByTimestamp
-     *
-     * @param int $timestamp unix-format
-     * @return array
-     * @throws \Madj2k\SoapApi\Exception
-     * @deprecated since 05-10-2017
-     */
-    public function findFeUserByTimestamp(int $timestamp): array;
-
-
-    /**
+     /**
      * Returns all FE-users that have been updated since $timestamp
      *
      * @param int $timestamp unix-format
@@ -83,19 +71,6 @@ interface ServerInterface
      * @throws \Madj2k\SoapApi\Exception
      */
     public function findFeUserByUid(int $uid): array;
-
-
-    /**
-     * Returns all FE-users that have been updated since $timestamp
-     * Alias of $this->findFeUserGroupsByTimestamp
-     *
-     * @param int $timestamp unix-format
-     * @param int $serviceOnly deprecated, no functionality any more
-     * @return array
-     * @throws \Madj2k\SoapApi\Exception
-     * @deprecated since 05-10-2017
-     */
-    public function findFeUserGroupByTimestamp(int $timestamp, int $serviceOnly = 0): array;
 
 
     /**
@@ -242,7 +217,7 @@ interface ServerInterface
      * @return array
      * @throws \Madj2k\SoapApi\Exception
      */
-    public function findEventReservationAddPersonsByTimestamp(int $timestamp): array;
+    public function rkwEventsFindEventReservationAddPersonsByTimestamp(int $timestamp): array;
 
 }
 
