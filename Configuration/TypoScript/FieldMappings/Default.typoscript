@@ -108,7 +108,7 @@ plugin.tx_soapapi  {
                     }
                     tx_feregister_consent_marketing {
                         key = consent_marketing
-                        type = string
+                        type = int
                     }
                 }
             }
@@ -305,7 +305,7 @@ plugin.tx_soapapi  {
                     }
                     page {
                         key = page
-                        type = string
+                        type = int
                     }
                     backend_user  {
                         key = backend_user

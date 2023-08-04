@@ -20,7 +20,6 @@ plugin.tx_soapapi  {
                         key = tx_rkwregistration_title
                         type = string
                     }
-                    tx_feregister_consent_marketing >
                 }
             }
 
@@ -30,7 +29,7 @@ plugin.tx_soapapi  {
 
                 fe_register {
                     tx_feregister_is_membership {
-                        key = is_service
+                        key = tx_rkwregistration_is_service
                         type = int
                     }
                 }
