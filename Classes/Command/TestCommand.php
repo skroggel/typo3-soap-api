@@ -134,7 +134,7 @@ class TestCommand extends Command
 
         } catch (\Exception $e) {
 
-            $message = sprintf('An unexpected error occurred while trying to cleanup: %s',
+            $message = sprintf('An unexpected error occurred while trying to call SOAP: %s',
                 str_replace(array("\n", "\r"), '', $e->getMessage())
             );
 
