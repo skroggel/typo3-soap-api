@@ -156,8 +156,28 @@ class Server implements ServerInterface
                 (! $feUser['first_name'])
                 && (! $feUser['last_name'])
             ) {
-                continue;
+
+                // try to get additional data from shippingAddress-table
+                try {
+                    $this->dataHandler->setTableName('tx_feregister_domain_model_shippingaddress');
+                    $shippingAddress = $this->dataHandler->findOneByFrontendUser(intval($feUser['uid']));
+                    if (!$shippingAddress) {
+                        continue;
+                    }
+
+                    $feUser['tx_rkwregistration_gender'] = $shippingAddress['gender'];
+                    $feUser['first_name'] = $shippingAddress['first_name'];
+                    $feUser['last_name'] = $shippingAddress['last_name'];
+                    $feUser['address'] = $shippingAddress['address'];
+                    $feUser['zip'] = $shippingAddress['zip'];
+                    $feUser['city'] = $shippingAddress['city'];
+                    $feUser['company'] = $shippingAddress['company'];
+
+                } catch (\Exception $e) {
+                    continue;
+                }
             }
+
             $resultFinal[] = $feUser;
         }
 
