@@ -200,6 +200,24 @@ class Server implements ServerInterface
 
 
     /**
+     * Update for given frontendUser
+     *
+     * @param int $uid
+     * @param string $dataString
+     * @return bool
+     * @throws \Madj2k\SoapApi\Exception
+     */
+    public function updateFeUserByUid(int $uid, string $dataString): bool
+    {
+        $data = [];
+        parse_str($dataString, $data);
+
+        $this->dataHandler->setTableName('fe_users');
+        return (bool) $this->dataHandler->updateByUid($uid, current($data));
+    }
+
+
+    /**
      * Returns all FE-users that have been updated since $timestamp
      * Alias of $this->findFeUserGroupsByTimestamp
      *

@@ -334,7 +334,7 @@ class DataHandler
 
         if (! $matched) {
             throw new \Madj2k\SoapApi\Exception(
-                'No valid key-value array for update given',
+                'No valid key-value array for update given' . print_r($keyValuePairs, true),
                 1690901204
             );
         }
