@@ -156,7 +156,6 @@ class SoapController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                 );
                 header('HTTP/1.1 500 Internal Server Error');
                 exit();
-
             }
         }
 

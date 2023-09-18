@@ -74,6 +74,17 @@ interface ServerInterface
 
 
     /**
+     * Update for given frontendUser
+     *
+     * @param int $uid
+     * @param string $dataString
+     * @return bool
+     * @throws \Madj2k\SoapApi\Exception
+     */
+    public function updateFeUserByUid(int $uid, string $dataString): bool;
+
+
+    /**
      * Returns all FE-users that have been updated since $timestamp
      *
      * @param int $timestamp unix-format

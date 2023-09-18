@@ -50,6 +50,14 @@
         <message name="findFeUserByUidResponse">
             <part name="return" type="FeUser"/>
         </message>
+
+        <message name="updateFeUserByUidRequest">
+            <part name="uid" type="xsd:int"/>
+            <part name="dataString" type="xsd:string"/>
+        </message>
+        <message name="updateFeUserByUidResponse">
+            <part name="return" type="xsd:int"/>
+        </message>        
     </f:section>
     
     <!-- ========================================================================= -->
@@ -71,6 +79,11 @@
             <input message="tns:findFeUserByUidRequest"/>
             <output message="tns:findFeUserByUidResponse"/>
         </operation>
+
+        <operation name="updateFeUserByUid">
+            <input message="tns:updateFeUserByUidRequest"/>
+            <output message="tns:updateFeUserByUidResponse"/>
+        </operation>        
     </f:section>
     
     <!-- ========================================================================= -->
@@ -83,7 +96,6 @@
             <input>
                 <soap:body use="literal" namespace="{url}/rkw/rkwsoap/soap/server"/>
             </input>
-    
             <output>
                 <soap:body use="literal" namespace="{url}/rkw/rkwsoap/soap/server"/>
             </output>
@@ -95,7 +107,6 @@
             <input>
                 <soap:body use="literal" namespace="{url}/rkw/rkwsoap/soap/server"/>
             </input>
-    
             <output>
                 <soap:body use="literal" namespace="{url}/rkw/rkwsoap/soap/server"/>
             </output>
@@ -106,10 +117,19 @@
             <input>
                 <soap:body use="literal" namespace="{url}/rkw/rkwsoap/soap/server"/>
             </input>
-    
             <output>
                 <soap:body use="literal" namespace="{url}/rkw/rkwsoap/soap/server"/>
             </output>
         </operation>
+
+        <operation name="updateFeUserByUid">
+            <soap:operation soapAction="{url}/rkw/rkwsoap/soap/server/#updateFeUserByUid"/>
+            <input>
+                <soap:body use="literal" namespace="{url}/rkw/rkwsoap/soap/server"/>
+            </input>
+            <output>
+                <soap:body use="literal" namespace="{url}/rkw/rkwsoap/soap/server"/>
+            </output>
+        </operation>        
     </f:section>
 </html>
