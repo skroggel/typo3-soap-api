@@ -15,6 +15,7 @@ namespace Madj2k\SoapApi\Data;
  */
 
 use Madj2k\CoreExtended\Utility\GeneralUtility;
+use Madj2k\CoreExtended\Utility\QueryUtility;
 use Madj2k\SoapApi\Utility\FieldMappingUtility;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
@@ -264,7 +265,7 @@ class DataHandler
             LogLevel::INFO,
             sprintf(
                 'SQL-Query: %s',
-                $this->getFullSql($queryBuilder)
+                QueryUtility::getFullSql($queryBuilder)
             )
         );
 
@@ -347,7 +348,7 @@ class DataHandler
             LogLevel::INFO,
             sprintf(
                 'SQL-Query: %s',
-                $this->getFullSql($queryBuilder)
+                QueryUtility::getFullSql($queryBuilder)
             )
         );
 
@@ -410,7 +411,7 @@ class DataHandler
             LogLevel::INFO,
             sprintf(
                 'SQL-Query: %s',
-                $this->getFullSql($queryBuilder)
+                QueryUtility::getFullSql($queryBuilder)
             )
         );
 
@@ -537,27 +538,6 @@ class DataHandler
     protected function getSettings(string $which = ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS): array
     {
         return GeneralUtility::getTypoScriptConfiguration('soapapi', $which);
-    }
-
-
-    /**
-     * @param \TYPO3\CMS\Core\Database\Query\QueryBuilder $queryBuilder
-     * @return string
-     */
-    protected function getFullSql (QueryBuilder $queryBuilder): string
-    {
-        $sql = $queryBuilder->getSQL();
-        $parameters = $queryBuilder->getParameters();
-
-        $search = array();
-        $replace = array();
-        krsort($parameters);
-
-        foreach ($parameters as $k => $v) {
-            $search[] = ':' . $k;
-            $replace[] = '\'' . $v . '\'';
-        }
-        return str_replace($search, $replace, $sql);
     }
 
 
