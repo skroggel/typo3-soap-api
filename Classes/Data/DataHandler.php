@@ -93,6 +93,16 @@ class DataHandler
 
 
     /**
+     * @param \TYPO3\CMS\Extbase\Object\ObjectManager $objectManager
+     * @return void
+     */
+    public function injectObjectManager(ObjectManager $objectManager): void
+    {
+        $this->objectManager = $objectManager;
+    }
+
+
+    /**
      * Construct
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
@@ -236,6 +246,7 @@ class DataHandler
      * @param \TYPO3\CMS\Core\Database\Query\QueryBuilder $queryBuilder
      * @return array
      * @throws \Madj2k\SoapApi\Exception
+     * @throws \Doctrine\DBAL\Driver\Exception
      */
     protected function _find(QueryBuilder $queryBuilder): array
     {
@@ -269,7 +280,7 @@ class DataHandler
             )
         );
 
-        while ($row = $statement->fetch()) {
+        while ($row = $statement->fetchAssociative()) {
 
             // do typeCasting and key-mapping
             $tempRow = [];
