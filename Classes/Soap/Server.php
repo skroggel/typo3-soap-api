@@ -16,6 +16,7 @@ namespace Madj2k\SoapApi\Soap;
 
 use Madj2k\CoreExtended\Utility\GeneralUtility as Common;
 use Madj2k\SoapApi\Data\DataHandler;
+use Madj2k\SoapApi\Exception;
 use TYPO3\CMS\Core\Log\Logger;
 use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
@@ -245,6 +246,20 @@ class Server implements ServerInterface
     public function findFeUserGroupsByTimestamp(int $timestamp, int $serviceOnly = 0): array
     {
         $this->dataHandler->setTableName('fe_groups');
+        return $this->dataHandler->findByTstamp($timestamp);
+    }
+
+
+    /**
+     * Returns all sys_categories
+     *
+     * @param int $timestamp
+     * @return array
+     * @throws \Madj2k\SoapApi\Exception
+     */
+    public function findCategoriesByTimestamp(int $timestamp): array
+    {
+        $this->dataHandler->setTableName('sys_category');
         return $this->dataHandler->findByTstamp($timestamp);
     }
 

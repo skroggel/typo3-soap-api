@@ -16,7 +16,7 @@ namespace Madj2k\SoapApi\Tests\Integration\Utility;
  */
 
 use Madj2k\SoapApi\Utility\FieldMappingUtility;
-use Nimut\TestingFramework\TestCase\FunctionalTestCase;
+use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
 /**
@@ -40,6 +40,7 @@ class FieldMappingUtilityTest extends FunctionalTestCase
      */
     protected $testExtensionsToLoad = [
         'typo3conf/ext/core_extended',
+        'typo3conf/ext/soap_api', // has to be loaded !!!
     ];
 
 
@@ -59,18 +60,21 @@ class FieldMappingUtilityTest extends FunctionalTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->importDataSet(self::FIXTURE_PATH . '/Database/Global.xml');
+        $this->importCSVDataSet(self::FIXTURE_PATH . '/Database/Global.csv');
 
         $this->setUpFrontendRootPage(
             1,
             [
-                'EXT:core_extended/Configuration/TypoScript/setup.typoscript',
-                'EXT:core_extended/Configuration/TypoScript/constants.typoscript',
-                'EXT:soap_api/Configuration/TypoScript/setup.typoscript',
-                'EXT:soap_api/Configuration/TypoScript/constants.typoscript',
-                self::FIXTURE_PATH . '/Frontend/Configuration/Rootpage.typoscript',
-            ],
-            ['example.com' => self::FIXTURE_PATH .  '/Frontend/Configuration/config.yaml']
+                'constants' => [
+                    'EXT:core_extended/Configuration/TypoScript/constants.typoscript',
+                    'EXT:soap_api/Configuration/TypoScript/constants.typoscript',
+                ],
+                'setup' => [
+                    'EXT:core_extended/Configuration/TypoScript/setup.typoscript',
+                    // 'EXT:soap_api/Configuration/TypoScript/setup.typoscript',
+                    'EXT:soap_api/Tests/Integration/Utility/FieldMappingUtilityTest/Fixtures/Frontend/Configuration/Rootpage.typoscript',
+                ]
+            ]
         );
 
     }

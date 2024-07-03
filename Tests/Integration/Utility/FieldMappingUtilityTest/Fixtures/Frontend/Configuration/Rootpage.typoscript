@@ -105,8 +105,6 @@ module.tx_soapapi  {
     }
 }
 
-plugin.tx_soapapi < module.tx_soapapi
-
 
 page = PAGE
 page {

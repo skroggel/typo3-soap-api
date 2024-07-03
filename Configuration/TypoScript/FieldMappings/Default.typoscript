@@ -10,7 +10,6 @@ plugin.tx_soapapi  {
         fieldMapping {
             fe_users {
                 core {
-
                     uid  {
                         key = uid
                         type = int
@@ -151,6 +150,48 @@ plugin.tx_soapapi  {
                 fe_register {
                     tx_feregister_is_membership {
                         key = is_membership
+                        type = int
+                    }
+                }
+            }
+
+            sys_category {
+
+                core {
+                    uid  {
+                        key = uid
+                        type = int
+                    }
+                    pid  {
+                        key = pid
+                        type = int
+                    }
+                    crdate {
+                        key = crdate
+                        type = int
+                    }
+                    tstamp {
+                        key = tstamp
+                        type = int
+                    }
+                    hidden {
+                        key = hidden
+                        type = int
+                    }
+                    deleted {
+                        key = deleted
+                        type = int
+                    }
+                    title {
+                        key = title
+                        type = string
+                    }
+                    description {
+                        key = description
+                        type = string
+                    }
+                    parent {
+                        key = parent
                         type = int
                     }
                 }
