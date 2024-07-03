@@ -9,7 +9,7 @@ call_user_func(
 
 
     },
-    'simple_consent'
+    'soap_api'
 );
 
 
