@@ -38,6 +38,8 @@ plugin.tx_soapapi  {
 	}
 }
 
+module.tx_soapapi.settings.soapServer < plugin.tx_soapapi.settings.soapServer
+
 // #########################################################
 // Include fieldMappings
 // #########################################################
@@ -45,7 +47,6 @@ plugin.tx_soapapi  {
 ['{$plugin.tx_soapapi.settings.soapServer.version}' == '8.7.3']
     <INCLUDE_TYPOSCRIPT: source="FILE:EXT:soap_api/Configuration/TypoScript/FieldMappings/v8-7-3.typoscript">
 [END]
-
 
 // #########################################################
 // AJAX Configuration

@@ -14,9 +14,7 @@ namespace Madj2k\SoapApi\Soap;
  * The TYPO3 project - inspiring people to share!
  */
 
-use Madj2k\CoreExtended\Utility\GeneralUtility as Common;
 use Madj2k\SoapApi\Data\DataHandler;
-use Madj2k\SoapApi\Exception;
 use TYPO3\CMS\Core\Log\Logger;
 use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
@@ -257,7 +255,7 @@ class Server implements ServerInterface
      * @return array
      * @throws \Madj2k\SoapApi\Exception
      */
-    public function findCategoriesByTimestamp(int $timestamp): array
+    public function findSysCategoriesByTimestamp(int $timestamp): array
     {
         $this->dataHandler->setTableName('sys_category');
         return $this->dataHandler->findByTstamp($timestamp);
@@ -521,7 +519,7 @@ class Server implements ServerInterface
      */
     protected function getSettings(string $which = ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS): array
     {
-        return Common::getTypoScriptConfiguration('rkwsoap', $which);
+        return \Madj2k\CoreExtended\Utility\GeneralUtility::getTypoScriptConfiguration('soapapi', $which);
     }
 
 }
