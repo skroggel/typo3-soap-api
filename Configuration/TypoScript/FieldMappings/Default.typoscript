@@ -6,7 +6,7 @@ plugin.tx_soapapi  {
     settings {
         # keys for field mapping using database table name
         # Array key is the database fieldname. The array value is the return key
-        # Two options for field names: Default; extension specific and "legacy" for backward reasons
+        # Two options for field names: default and extension specific
         fieldMapping {
             fe_users {
                 core {
@@ -108,6 +108,10 @@ plugin.tx_soapapi  {
                     tx_feregister_consent_marketing {
                         key = consent_marketing
                         type = int
+                    }
+                    tx_feregister_consent_topics {
+                        key = consent_topics
+                        type = string
                     }
                 }
             }

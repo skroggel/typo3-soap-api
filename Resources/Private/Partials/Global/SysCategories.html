@@ -27,10 +27,10 @@
 
     <f:section name="Messages">
 
-        <message name="findCategoriesByTimestampRequest">
+        <message name="findSysCategoriesByTimestampRequest">
             <part name="timestamp" type="xsd:int"/>
         </message>
-        <message name="findCategoriesByTimestampResponse">
+        <message name="findSysCategoriesByTimestampResponse">
             <part name="return" type="CategoryList"/>
         </message>
 
@@ -40,9 +40,9 @@
 
     <f:section name="PortTypes">
 
-        <operation name="findCategoriesByTimestamp">
-            <input message="tns:findCategoriesByTimestampRequest"/>
-            <output message="tns:findCategoriesByTimestampResponse"/>
+        <operation name="findSysCategoriesByTimestamp">
+            <input message="tns:findSysCategoriesByTimestampRequest"/>
+            <output message="tns:findSysCategoriesByTimestampResponse"/>
         </operation>
 
     </f:section>
@@ -51,8 +51,8 @@
 
     <f:section name="Bindings">
 
-        <operation name="findCategoriesByTimestamp">
-            <soap:operation soapAction="{url}/rkw/rkwsoap/soap/server/#findCategoriesByTimestamp"/>
+        <operation name="findSysCategoriesByTimestamp">
+            <soap:operation soapAction="{url}/rkw/rkwsoap/soap/server/#findSysCategoriesByTimestamp"/>
             <input>
                 <soap:body use="literal" namespace="{url}/rkw/rkwsoap/soap/server"/>
             </input>

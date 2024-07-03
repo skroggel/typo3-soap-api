@@ -40,7 +40,7 @@ plugin.tx_soapapi {
             disableSecurityChecks = 0
 
             # cat=plugin.tx_soapapi//a; type=string; label=Version number that is returned via getVersion()
-            version = 8.7.3
+            version = 10.4.3
         }
 	}
 }

@@ -7,7 +7,7 @@ plugin.tx_soapapi  {
 
         # keys for field mapping using database table name
         # Array key is the database fieldname. The array value is the return key
-        # Two options for field names: Default; extension specific and "legacy" for backward reasons
+        # Two options for field names: default and extension specific
         fieldMapping {
             fe_users {
 
