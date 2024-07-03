@@ -1,6 +1,18 @@
 module.tx_soapapi  {
 
     settings {
+
+		soapServer {
+            storagePids = {$plugin.tx_soapapi.settings.soapServer.storagePids}
+			username = {$plugin.tx_soapapi.settings.soapServer.username}
+			password = {$plugin.tx_soapapi.settings.soapServer.password}
+			url = {$plugin.tx_soapapi.settings.soapServer.url}
+            typeNum = {$plugin.tx_soapapi.settings.soapServer.typeNum}
+			allowedRemoteIpList = {$plugin.tx_soapapi.settings.soapServer.allowedRemoteIpList}
+            disableSecurityChecks  = {$plugin.tx_soapapi.settings.soapServer.disableSecurityChecks}
+            version = {$plugin.tx_soapapi.settings.soapServer.version}
+		}
+
         fieldMapping {
 
             //==================================================
@@ -39,8 +51,6 @@ module.tx_soapapi  {
         }
     }
 }
-
-plugin.tx_soapapi < module.tx_soapapi
 
 
 page = PAGE

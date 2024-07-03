@@ -15,24 +15,11 @@ namespace Madj2k\SoapApi\Tests\Integration\Data;
  *
  */
 
-
-use Nimut\TestingFramework\TestCase\FunctionalTestCase;
+use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 use Madj2k\CoreExtended\Utility\FrontendSimulatorUtility;
-use Madj2k\FeRegister\Domain\Model\FrontendUser;
-use Madj2k\FeRegister\Domain\Model\GuestUser;
-use Madj2k\FeRegister\Domain\Model\OptIn;
-use Madj2k\FeRegister\Domain\Repository\BackendUserRepository;
-use Madj2k\FeRegister\Domain\Repository\FrontendUserGroupRepository;
-use Madj2k\FeRegister\Domain\Repository\FrontendUserRepository;
-use Madj2k\FeRegister\Domain\Repository\OptInRepository;
-use Madj2k\FeRegister\Domain\Repository\ConsentRepository;
-use Madj2k\FeRegister\Registration\FrontendUserRegistration;
-use Madj2k\FeRegister\Utility\FrontendUserSessionUtility;
 use Madj2k\SoapApi\Data\DataHandler;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Mvc\Request;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
-use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
 /**
  * DataHandlerTest
@@ -55,6 +42,7 @@ class DataHandlerTest extends FunctionalTestCase
      */
     protected $testExtensionsToLoad = [
         'typo3conf/ext/core_extended',
+        'typo3conf/ext/soap_api', // has to be loaded !!!
     ];
 
 
@@ -85,18 +73,21 @@ class DataHandlerTest extends FunctionalTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->importDataSet(self::FIXTURE_PATH . '/Database/Global.xml');
+        $this->importCSVDataSet(self::FIXTURE_PATH . '/Database/Global.csv');
 
         $this->setUpFrontendRootPage(
             1,
             [
-                'EXT:core_extended/Configuration/TypoScript/setup.typoscript',
-                'EXT:core_extended/Configuration/TypoScript/constants.typoscript',
-                'EXT:soap_api/Configuration/TypoScript/setup.typoscript',
-                'EXT:soap_api/Configuration/TypoScript/constants.typoscript',
-                self::FIXTURE_PATH . '/Frontend/Configuration/Rootpage.typoscript',
-            ],
-            ['example.com' => self::FIXTURE_PATH .  '/Frontend/Configuration/config.yaml']
+                'constants' => [
+                    'EXT:core_extended/Configuration/TypoScript/constants.typoscript',
+                    'EXT:soap_api/Configuration/TypoScript/constants.typoscript',
+                ],
+                'setup' => [
+                    'EXT:core_extended/Configuration/TypoScript/setup.typoscript',
+                   // 'EXT:soap_api/Configuration/TypoScript/setup.typoscript',
+                    'EXT:soap_api/Tests/Integration/Data/DataHandlerTest/Fixtures/Frontend/Configuration/Rootpage.typoscript',
+                ]
+            ]
         );
 
         /** @var \TYPO3\CMS\Extbase\Object\ObjectManager $objectManager */
@@ -104,6 +95,8 @@ class DataHandlerTest extends FunctionalTestCase
 
         /** \Madj2k\SoapApi\Data\DataHandler $fixture */
         $this->fixture = $this->objectManager->get(DataHandler::class);
+
+
     }
 
 
@@ -127,7 +120,7 @@ class DataHandlerTest extends FunctionalTestCase
          * Then a type-cast is done
          * Then a field-mapping is done
          */
-        $this->importDataSet(self::FIXTURE_PATH . '/Database/Check10.xml');
+        $this->importCSVDataSet(self::FIXTURE_PATH . '/Database/Check10.csv');
 
         $this->fixture->setTableName('fe_users');
         $result = $this->fixture->findByUid(11);
@@ -166,7 +159,7 @@ class DataHandlerTest extends FunctionalTestCase
          * Then a type-cast is done
          * Then a field-mapping is done
          */
-        $this->importDataSet(self::FIXTURE_PATH . '/Database/Check10.xml');
+        $this->importCSVDataSet(self::FIXTURE_PATH . '/Database/Check10.csv');
 
         $this->fixture->setTableName('fe_users');
         $result = $this->fixture->findByTstamp(10000);
@@ -211,7 +204,7 @@ class DataHandlerTest extends FunctionalTestCase
          * Then a type-cast is done
          * Then a field-mapping is done
          */
-        $this->importDataSet(self::FIXTURE_PATH . '/Database/Check10.xml');
+        $this->importCSVDataSet(self::FIXTURE_PATH . '/Database/Check10.csv');
 
         $this->fixture->setTableName('fe_users');
         $result = $this->fixture->findAll();
@@ -256,7 +249,7 @@ class DataHandlerTest extends FunctionalTestCase
          * Then a type-cast is done
          * Then a field-mapping is done
          */
-        $this->importDataSet(self::FIXTURE_PATH . '/Database/Check10.xml');
+        $this->importCSVDataSet(self::FIXTURE_PATH . '/Database/Check10.csv');
 
         $this->fixture->setTableName('fe_users');
         $this->fixture->setStoragePids('10,12');
@@ -305,7 +298,7 @@ class DataHandlerTest extends FunctionalTestCase
         static::expectException(\Madj2k\SoapApi\Exception::class);
         static::expectExceptionCode(1690901204);
 
-        $this->importDataSet(self::FIXTURE_PATH . '/Database/Check10.xml');
+        $this->importCSVDataSet(self::FIXTURE_PATH . '/Database/Check10.csv');
 
         $update = [
             'non_existing_key' => 'my value',
@@ -337,7 +330,7 @@ class DataHandlerTest extends FunctionalTestCase
          * Then a typeCasting is done
          */
 
-        $this->importDataSet(self::FIXTURE_PATH . '/Database/Check10.xml');
+        $this->importCSVDataSet(self::FIXTURE_PATH . '/Database/Check10.csv');
 
         $update = [
             'username_as_key' => 'merzilein@cdu.de',
@@ -382,7 +375,7 @@ class DataHandlerTest extends FunctionalTestCase
         static::expectException(\Madj2k\SoapApi\Exception::class);
         static::expectExceptionCode(1690901205);
 
-        $this->importDataSet(self::FIXTURE_PATH . '/Database/Check10.xml');
+        $this->importCSVDataSet(self::FIXTURE_PATH . '/Database/Check10.csv');
 
         $insert = [
             'non_existing_key' => 'my value',
@@ -453,7 +446,7 @@ class DataHandlerTest extends FunctionalTestCase
          * Then this array contains only the rows that match the string
          * Then every row only contains the defined fields
          */
-        $this->importDataSet(self::FIXTURE_PATH . '/Database/Check10.xml');
+        $this->importCSVDataSet(self::FIXTURE_PATH . '/Database/Check10.csv');
 
         $this->fixture->setTableName('fe_users');
         $result = $this->fixture->findByZip('10969');
@@ -488,7 +481,7 @@ class DataHandlerTest extends FunctionalTestCase
          * Then this array contains only the rows that match the integer
          * Then every row only contains the defined fields
          */
-        $this->importDataSet(self::FIXTURE_PATH . '/Database/Check10.xml');
+        $this->importCSVDataSet(self::FIXTURE_PATH . '/Database/Check10.csv');
 
         $this->fixture->setTableName('fe_users');
         $result = $this->fixture->findByDisable(0);
@@ -526,7 +519,7 @@ class DataHandlerTest extends FunctionalTestCase
          * Then this array contains only one database-row that matches the string
          * Then this array only contains the defined fields
          */
-        $this->importDataSet(self::FIXTURE_PATH . '/Database/Check10.xml');
+        $this->importCSVDataSet(self::FIXTURE_PATH . '/Database/Check10.csv');
 
         $this->fixture->setTableName('fe_users');
         $result = $this->fixture->findOneByLastName('Lauterbach');
@@ -557,7 +550,7 @@ class DataHandlerTest extends FunctionalTestCase
          * Then the integer has the value two
          * The two matching datasets have been updated
          */
-        $this->importDataSet(self::FIXTURE_PATH . '/Database/Check10.xml');
+        $this->importCSVDataSet(self::FIXTURE_PATH . '/Database/Check10.csv');
 
         $this->fixture->setTableName('fe_users');
         $result = $this->fixture->updateByZip('10969', ['zip' => '0815']);
@@ -755,11 +748,11 @@ class DataHandlerTest extends FunctionalTestCase
 
     /**
      * TearDown
+     * @throws \TYPO3\CMS\Extbase\Object\Exception
      */
     protected function teardown(): void
     {
         FrontendSimulatorUtility::resetFrontendEnvironment();
-
         parent::tearDown();
     }
 

@@ -1,0 +1,5 @@
+fe_users,,,,,,,,,,,,,,,,,,,
+,uid,pid,crdate,tstamp,disable,deleted,username,password,email,first_name,last_name,company,address,zip,city,telephone,fax,title,www
+,10,10,10,0,1,0,merkelchen@cdu.de,test,merkel@cdu.de,Angela,Merkel,CDU,Straßenring 123,99877,Hamburg,069/1346,069/123456789,Dr. Prof.,https://www.cdu.de
+,11,11,10,20000,0,0,lauterlein@spd.de,test,lauterbach@spd.de,1Karl,Lauterbach,SPD,Straßenring 123,10969,Hamburg,069/1346,069/123456789,Dr. Prof.,https://www.spd.de
+,12,12,10,10000,0,0,lindnerchen@fdp.de,test,lindner@fdp.de,Christian,Lindner,FDP,Straßenring 123,10969,Hamburg,069/1346,069/123456789,Dr. Prof.,https://www.fdp.de
