@@ -38,7 +38,6 @@ plugin.tx_soapapi  {
 	}
 }
 
-module.tx_soapapi.settings.soapServer < plugin.tx_soapapi.settings.soapServer
 
 // #########################################################
 // Include fieldMappings
