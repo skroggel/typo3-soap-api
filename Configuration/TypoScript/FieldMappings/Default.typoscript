@@ -360,6 +360,10 @@ plugin.tx_soapapi  {
                         key = ordered_external
                         type = int
                     }
+                    digital_only {
+                        key = digital_only
+                        type = int
+                    }
                 }
             }
 
