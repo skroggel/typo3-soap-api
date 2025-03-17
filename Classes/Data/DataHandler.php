@@ -227,6 +227,39 @@ class DataHandler
 
 
     /**
+     * Find all data by pid and timestamp
+     *
+     * @param int $parent
+     * @param int $timestamp
+     * @return array
+     * @throws \Madj2k\SoapApi\Exception
+     */
+    public function findByParentAndTstamp(int $parent = 0, int $timestamp = 0): array
+    {
+        /** @var \TYPO3\CMS\Core\Database\Query\QueryBuilder $queryBuilder */
+        $queryBuilder = $this->getQueryBuilder();
+
+        // default
+        $queryBuilder->where(
+            $queryBuilder->expr()->gte('tstamp',
+                $queryBuilder->createNamedParameter(
+                    $timestamp, Connection::PARAM_INT
+                )
+            )
+        )->andWhere(
+            $queryBuilder->expr()->eq('parent',
+                $queryBuilder->createNamedParameter(
+                    $parent, Connection::PARAM_INT
+                )
+            )
+        );
+
+        $queryBuilder->orderBy('tstamp', 'ASC');
+        return $this->_find($queryBuilder);
+    }
+
+
+    /**
      * Find all data
      *
      * @return array

@@ -39,6 +39,9 @@ plugin.tx_soapapi {
             # cat=plugin.tx_soapapi//a; type=boolean; label=Disables client authentication
             disableSecurityChecks = 0
 
+            # cat=plugin.tx_soapapi//a; type=string; label=Parent category id for consent topics
+            consentTopicsParentUid = 261
+
             # cat=plugin.tx_soapapi//a; type=string; label=Version number that is returned via getVersion()
             version = 10.4.3
         }

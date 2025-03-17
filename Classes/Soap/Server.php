@@ -263,6 +263,36 @@ class Server implements ServerInterface
 
 
     /**
+     * Returns all sys_categories filtered by parent uid and timestamp
+     *
+     * @param int $parent
+     * @param int $timestamp
+     * @return array
+     * @throws \Madj2k\SoapApi\Exception
+     */
+    public function findSysCategoriesByParentAndTimestamp(int $parent, int $timestamp): array
+    {
+        $this->dataHandler->setTableName('sys_category');
+
+        return $this->dataHandler->findByParentAndTstamp($parent, $timestamp);
+    }
+
+    /**
+     * Returns all sys_categories which are consent topics, filtered by parent uid and timestamp
+     *
+     * @param int $timestamp
+     * @return array
+     * @throws \Madj2k\SoapApi\Exception
+     */
+    public function findConsentTopicsByTimestamp(int $timestamp): array
+    {
+        $parent = $this->settings['soapServer']['consentTopicsParentUid'];
+
+        return $this->findSysCategoriesByParentAndTimestamp((int) $parent, $timestamp);
+
+    }
+
+    /**
      * Returns all new orders since $timestamp
      *
      * @param int $timestamp unix-format
@@ -304,7 +334,7 @@ class Server implements ServerInterface
     public function rkwShopSetStatusForOrder(int $orderUid, int $status): bool
     {
         $data = [
-            'status' => $status
+            'status' => $status,
         ];
 
         $this->dataHandler->setTableName('tx_rkwshop_domain_model_order');
@@ -323,7 +353,7 @@ class Server implements ServerInterface
     public function rkwShopSetDeletedForOrder(int $orderUid, int $deleted): bool
     {
         $data = [
-            'deleted' => $deleted
+            'deleted' => $deleted,
         ];
 
         $this->dataHandler->setTableName('tx_rkwshop_domain_model_order');
@@ -356,7 +386,7 @@ class Server implements ServerInterface
     public function rkwShopSetStatusForOrderItem(int $orderItemUid, int $status): bool
     {
         $data = [
-            'status' => $status
+            'status' => $status,
         ];
 
         $this->dataHandler->setTableName('tx_rkwshop_domain_model_orderitem');
@@ -430,7 +460,7 @@ class Server implements ServerInterface
             'product' => $productUid,
             'amount' => $amount,
             'comment' => $comment,
-            'delivery_start' => $deliveryStart
+            'delivery_start' => $deliveryStart,
         ];
 
         $this->dataHandler->setTableName('tx_rkwshop_domain_model_stock');
