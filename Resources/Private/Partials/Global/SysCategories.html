@@ -16,7 +16,7 @@
 
         <xsd:complexType name="Category">
             <xsd:all>
-                <f:for each="{soapApi:fieldMapping(table='sys_categories')}" as="mappingConfig">
+                <f:for each="{soapApi:fieldMapping(table='sys_category')}" as="mappingConfig">
                     <xsd:element minOccurs="0" maxOccurs="1" name="{mappingConfig.key}" type="xsd:{mappingConfig.type}" />
                 </f:for>
             </xsd:all>
