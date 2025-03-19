@@ -270,7 +270,7 @@ class Server implements ServerInterface
      * @return array
      * @throws \Madj2k\SoapApi\Exception
      */
-    public function findSysCategoriesByParentAndTimestamp(int $parent, int $timestamp): array
+    public function findSysCategoriesByParentAndTimestamp(int $parent, int $timestamp = 0): array
     {
         $this->dataHandler->setTableName('sys_category');
 
@@ -280,15 +280,14 @@ class Server implements ServerInterface
     /**
      * Returns all sys_categories which are consent topics, filtered by parent uid and timestamp
      *
-     * @param int $timestamp
      * @return array
      * @throws \Madj2k\SoapApi\Exception
      */
-    public function findConsentTopicsByTimestamp(int $timestamp): array
+    public function findAllConsentTopics(): array
     {
         $parent = $this->settings['soapServer']['consentTopicsParentUid'];
 
-        return $this->findSysCategoriesByParentAndTimestamp((int) $parent, $timestamp);
+        return $this->findSysCategoriesByParentAndTimestamp((int) $parent);
 
     }
 
