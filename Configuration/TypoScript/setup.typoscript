@@ -27,6 +27,7 @@ plugin.tx_soapapi  {
 
 		soapServer {
             storagePids = {$plugin.tx_soapapi.settings.soapServer.storagePids}
+            consentTopicsParentUid = {$plugin.tx_soapapi.settings.soapServer.consentTopicsParentUid}
 			username = {$plugin.tx_soapapi.settings.soapServer.username}
 			password = {$plugin.tx_soapapi.settings.soapServer.password}
 			url = {$plugin.tx_soapapi.settings.soapServer.url}
