@@ -40,10 +40,8 @@
         <message name="findSysCategoriesByParentAndTimestampResponse">
             <part name="return" type="CategoryList"/>
         </message>
-        <message name="findConsentTopicsByTimestampRequest">
-            <part name="timestamp" type="xsd:int"/>
-        </message>
-        <message name="findConsentTopicsByTimestampResponse">
+        <message name="findAllConsentTopicsRequest"/>
+        <message name="findAllConsentTopicsResponse">
             <part name="return" type="CategoryList"/>
         </message>
 
@@ -61,9 +59,9 @@
             <input message="tns:findSysCategoriesByParentAndTimestampRequest"/>
             <output message="tns:findSysCategoriesByParentAndTimestampResponse"/>
         </operation>
-        <operation name="findConsentTopicsByTimestamp">
-            <input message="tns:findConsentTopicsByTimestampRequest"/>
-            <output message="tns:findConsentTopicsByTimestampResponse"/>
+        <operation name="findAllConsentTopics">
+            <input message="tns:findAllConsentTopicsRequest"/>
+            <output message="tns:findAllConsentTopicsResponse"/>
         </operation>
 
     </f:section>
@@ -94,12 +92,11 @@
             </output>
         </operation>
 
-        <operation name="findConsentTopicsByTimestamp">
-            <soap:operation soapAction="{url}/rkw/rkwsoap/soap/server/#findConsentTopicsByTimestamp"/>
+        <operation name="findAllConsentTopics">
+            <soap:operation soapAction="{url}/rkw/rkwsoap/soap/server/#findAllConsentTopics"/>
             <input>
-            <soap:body use="literal" namespace="{url}/rkw/rkwsoap/soap/server"/>
+                <soap:body use="literal" namespace="{url}/rkw/rkwsoap/soap/server"/>
             </input>
-
             <output>
                 <soap:body use="literal" namespace="{url}/rkw/rkwsoap/soap/server"/>
             </output>
