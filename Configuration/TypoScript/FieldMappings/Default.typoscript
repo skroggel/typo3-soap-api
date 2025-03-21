@@ -364,6 +364,10 @@ plugin.tx_soapapi  {
                         key = digital_only
                         type = int
                     }
+                    delivery_end {
+                        key = delivery_end
+                        type = int
+                    }
                 }
             }
 
