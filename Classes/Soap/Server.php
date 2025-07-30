@@ -306,16 +306,26 @@ class Server implements ServerInterface
         // add shipping-address to each single order
         foreach ($orders as &$order) {
 
+            $shippingAddress = [
+                'gender' => 99,
+                'title' => 0,
+                'first_name' => '',
+                'last_name' => '',
+                'company' => '',
+                'address' => '',
+                'zip' => '',
+                'city' => '',
+            ];
+
             if ($order['shipping_address']) {
 
                 $this->dataHandler->setTableName('tx_feregister_domain_model_shippingaddress');
                 $shippingAddress = $this->dataHandler->findByUid(intval($order['shipping_address']));
 
-                if ($shippingAddress) {
-                    $order = array_merge($order, $shippingAddress);
-                }
-                unset($order['shipping_address']);
             }
+
+            $order = array_merge($order, $shippingAddress);
+
         }
 
         return $orders;
