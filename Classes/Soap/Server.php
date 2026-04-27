@@ -160,20 +160,18 @@ class Server implements ServerInterface
                 try {
                     $this->dataHandler->setTableName('tx_feregister_domain_model_shippingaddress');
                     $shippingAddress = $this->dataHandler->findOneByFrontendUser(intval($feUser['uid']));
-                    if (!$shippingAddress) {
-                        continue;
+                    if ($shippingAddress) {
+                        $feUser['tx_rkwregistration_gender'] = $shippingAddress['gender'];
+                        $feUser['first_name'] = $shippingAddress['first_name'];
+                        $feUser['last_name'] = $shippingAddress['last_name'];
+                        $feUser['address'] = $shippingAddress['address'];
+                        $feUser['zip'] = $shippingAddress['zip'];
+                        $feUser['city'] = $shippingAddress['city'];
+                        $feUser['company'] = $shippingAddress['company'];
                     }
 
-                    $feUser['tx_rkwregistration_gender'] = $shippingAddress['gender'];
-                    $feUser['first_name'] = $shippingAddress['first_name'];
-                    $feUser['last_name'] = $shippingAddress['last_name'];
-                    $feUser['address'] = $shippingAddress['address'];
-                    $feUser['zip'] = $shippingAddress['zip'];
-                    $feUser['city'] = $shippingAddress['city'];
-                    $feUser['company'] = $shippingAddress['company'];
-
                 } catch (\Exception $e) {
-                    continue;
+                    // do nothing, just keep $feUser as it is
                 }
             }
 
